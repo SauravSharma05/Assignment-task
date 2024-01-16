@@ -12,7 +12,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+    //      dd($request);
+        // $profiledata = Userlist::where('email','=',$email)->get();
         return view('home');
+
     }
     public function register()
     {
@@ -27,28 +30,30 @@ class HomeController extends Controller
         $user->city = $request->city;
         $user->pin = $request->pin;
         $user->phone = $request->phone;
+        $user->address = $request->address;
         $user->state = $request->state;
         $user->password = $request->password;
         $user->save();
 
-        // return redirect('/login');
+        return redirect('/login');
     }
     public function login()
     {
         return view('login');
     }
 
-    public function verify(Request $request)
+    public function verify(Request $request, Userlist $userlist)
     {
         // dd($request);
         $request->validate(['email'=>'required','password'=>'required']);
         $credential = $request->only('email','password');
         // dd($credential);
-
         if(Auth::attempt($credential))
         {
             // dd(Auth::user());
-        return redirect('/home');
+            $profiledata = Userlist::where('email','=',$request['email'])->get();
+            // dd($profiledata);
+            return view('/home', compact('profiledata'));
 
         }
         else
@@ -65,4 +70,8 @@ class HomeController extends Controller
         Session::flush();
         return redirect('/login');
     }
+
+
+
+
 }

@@ -47,7 +47,7 @@
 </head>
 <body>
 
-        <a href="home">back to homepage</a>
+    <a href="register">register here</a>
 
     <fieldset>
         <legend>Login here</legend>
