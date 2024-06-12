@@ -13,32 +13,25 @@ class controller extends model
                     // print_r($_SERVER);
                     if(isset($_REQUEST['submit']))
                     {
-                        $name= $_REQUEST['name'];   
-                        $email= $_REQUEST['email'];
-                        $address= $_REQUEST['address'];
-                        $dept= $_REQUEST['dept'];
-                        $edu= $_REQUEST['edu'];
-                        $exp= $_REQUEST['exp'];
-                        $contact= $_REQUEST['contact'];
-                        $gender= $_REQUEST['gender'];
-                        $hobby= $_REQUEST['hobby'];
-                        $hob = implode(',',$hobby);
                         
                         $file = $_FILES['image']['tmp_name'];
                         $loc = "images/".time().$_FILES['image']['name'];
                         move_uploaded_file($file,$loc);
-
-                    $data = array(
-                        "name" => $name,
-                        "email" => $email,
-                        "address" => $address,
-                        "hobby" => $hob,
-                        "edu" => $edu,
-                        "exp" => $exp,
-                        "contact" => $contact,
-                        "dept" => $dept,
-                        "gender" => $gender,
-                        "image" => $loc,
+                        
+                        $hobby= $_REQUEST['hobby'];
+                        $hob = implode(',',$hobby);
+                        
+                        $data = array(
+                            "name" => $_REQUEST['name'],
+                            "email" => $_REQUEST['email'],
+                            "address" => $_REQUEST['address'],
+                            "edu"=> $_REQUEST['edu'],
+                            "exp"=> $_REQUEST['exp'],
+                            "contact"=> $_REQUEST['contact'],
+                            "gender"=> $_REQUEST['gender'],
+                            "dept" => $_REQUEST['dept'],
+                            "hobby" => $hob,
+                            "image" => $loc,
                     );
                     $this->insert('userlist',$data);
                     header('location:index');
