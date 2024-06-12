@@ -51,9 +51,9 @@ class HomeController extends Controller
         if(Auth::attempt($credential))
         {
             // dd(Auth::user());
-            $profiledata = Userlist::where('email','=',$request['email'])->get();
+
             // dd($profiledata);
-            return view('/home', compact('profiledata'));
+            return view('/home');
 
         }
         else

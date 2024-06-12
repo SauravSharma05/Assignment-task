@@ -38,7 +38,6 @@
 
         </ul>
 
-
         @foreach ($profiledata as $value)
         <div class="profile">
             <div class="prof">Name : {{ $value->name }}</div>
@@ -50,5 +49,8 @@
             <div class="prof">Address : {{ $value->address }}</div>
         </div>
         @endforeach
+      
+
+
 </body>
 </html>
